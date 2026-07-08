@@ -4,12 +4,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const signupForm = document.getElementById("signup-form");
   const messageDiv = document.getElementById("message");
 
+  let messageTimeoutId;
+
   function showMessage(text, type) {
     messageDiv.textContent = text;
-    messageDiv.className = type;
+    messageDiv.className = `message ${type}`;
     messageDiv.classList.remove("hidden");
 
-    setTimeout(() => {
+    if (messageTimeoutId) {
+      clearTimeout(messageTimeoutId);
+    }
+
+    messageTimeoutId = setTimeout(() => {
       messageDiv.classList.add("hidden");
     }, 5000);
   }
